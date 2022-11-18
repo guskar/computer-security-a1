@@ -22,14 +22,35 @@ public class Encrypter {
 
   }
 
-  public String encryptByTransposition(String word) {
-    String lowerCaseWord = word.toLowerCase();
-    String encryptedWord = "";
-    for (int i = lowerCaseWord.length() - 1; i >= 0; i--) {
-      char currentChar = lowerCaseWord.charAt(i);
-      encryptedWord += currentChar;
+  public String encryptByTransposition(String word, int numberOfColumns) {
+    String output = "";
+    int numberOfRows = (int) Math.ceil(word.length() * 1.0 / numberOfColumns);
+    System.out.println(numberOfRows);
+    char[][] container = new char[numberOfRows][numberOfColumns];
+    int counter = 0;
+
+    for (int i = 0; i < numberOfRows; i++) {
+      for (int j = 0; j < numberOfColumns; j++, counter++) {
+        if (word.length() > counter) {
+            container[i][j] = word.charAt(counter);
+        }
+      }
     }
-    return encryptedWord;
+
+    for (int j = 0; j < numberOfColumns; j++) {
+      for (int i = 0; i < numberOfRows; i++) {
+        output += container[i][j];
+      }
+    }
+    return output;
+
+    // String lowerCaseWord = word.toLowerCase();
+    // String encryptedWord = "";
+    // for (int i = lowerCaseWord.length() - 1; i >= 0; i--) {
+    // char currentChar = lowerCaseWord.charAt(i);
+    // encryptedWord += currentChar;
+    // }
+    // return encryptedWord;
   }
 
 }

@@ -40,12 +40,14 @@ public class Mainapp {
           }
 
           if (userInputEncryptionMethod.equals("B")) {
+            System.out.println("Enter a key");
+            int userInputEncryptKey = reader.nextInt();
             System.out.println("Enter a path");
             String userEncryptionPath = reader.next();
             String text = myFileReader
                 .readFromFile(userEncryptionPath);
 
-            String transposedWord = e.encryptByTransposition(text);
+            String transposedWord = e.encryptByTransposition(text, userInputEncryptKey);
             myFileWriter.writeToFile(transposedWord);
             System.out.println(transposedWord);
           }
@@ -71,12 +73,13 @@ public class Mainapp {
           }
 
           if (userInputDecryptionMethod.equals("B")) {
-
+            System.out.println("Enter a key");
+            int userInputDecryptKey = reader.nextInt();
             System.out.println("Enter a path");
             String userDecryptionPath = reader.next();
             String encryptedFromfile = myFileReader
                 .readFromFile(userDecryptionPath);
-            String decryptedWord = d.decryptByTransposition(encryptedFromfile);
+            String decryptedWord = d.decryptByTransposition(encryptedFromfile, userInputDecryptKey);
             System.out.println(decryptedWord);
           }
 

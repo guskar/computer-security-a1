@@ -21,14 +21,34 @@ public class Decrypter {
     return decryptedWord;
   }
 
-  public String decryptByTransposition(String word) {
-    String lowerCaseWord = word.toLowerCase();
-    String encryptedWord = "";
-    for (int i = lowerCaseWord.length() - 1; i >= 0; i--) {
-      char currentChar = lowerCaseWord.charAt(i);
-      encryptedWord += currentChar;
+  public String decryptByTransposition(String word, int numberOfColumns) {
+    int numberOfRows = (int) Math.ceil(word.length() * 1.0 / numberOfColumns);
+
+    char[][] container = new char[numberOfRows][numberOfColumns];
+    int counter = 0;
+    for (int i = 0; i < numberOfColumns; i++) {
+      for (int j = 0; j < numberOfRows; j++, counter++) {
+        if (word.length() > counter) {
+          container[j][i] = word.charAt(counter);
+        }
+      }
     }
-    return encryptedWord;
+
+    String output = "";
+    for (int i = 0; i < numberOfRows; i++) {
+      for (int j = 0; j < numberOfColumns; j++) {
+        output += container[i][j];
+      }
+    }
+    return output;
   }
+  // String lowerCaseWord = word.toLowerCase();
+  // String encryptedWord = "";
+  // for (int i = lowerCaseWord.length() - 1; i >= 0; i--) {
+  // char currentChar = lowerCaseWord.charAt(i);
+  // encryptedWord += currentChar;
+  // }
+  // return encryptedWord;
+  // }
 
 }
